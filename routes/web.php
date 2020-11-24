@@ -8,7 +8,7 @@ use App\Http\Livewire\Auth\Passwords\Email;
 use App\Http\Livewire\Auth\Passwords\Reset;
 use App\Http\Livewire\Auth\Register;
 use App\Http\Livewire\Auth\Verify;
-use App\Http\Livewire\ShowJobBoard;
+use App\Http\Livewire\ShowJobs;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -56,5 +56,6 @@ Route::middleware('auth')->group(function () {
         ->name('logout');
 });
 
-Route::get('/job-board', ShowJobBoard::class)
+Route::get('/jobs', ShowJobs::class)
+    ->name('jobs')
     ->middleware('auth');

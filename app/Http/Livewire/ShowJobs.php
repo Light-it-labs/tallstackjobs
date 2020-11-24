@@ -5,7 +5,7 @@ namespace App\Http\Livewire;
 use App\Models\Job;
 use Livewire\Component;
 
-class ShowJobBoard extends Component
+class ShowJobs extends Component
 {
     public $jobs;
 
@@ -16,6 +16,6 @@ class ShowJobBoard extends Component
 
     public function render()
     {
-        return view('livewire.show-job-board');
+        return view('livewire.show-jobs');
     }
 }

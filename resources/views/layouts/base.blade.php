@@ -42,6 +42,7 @@
                             <div class="flex items-center justify-end">
                                 <div class="flex">
                                     @auth
+                                        <a href="{{ route('jobs') }}" class="px-3 py-2 rounded-md text-sm font-medium text-indigo-200 hover:text-white">Jobs</a>
                                         <a
                                             href="{{ route('logout') }}"
                                             onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
