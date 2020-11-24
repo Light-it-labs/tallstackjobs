@@ -56,4 +56,4 @@ Route::middleware('auth')->group(function () {
         ->name('logout');
 });
 
-Route::get('/job-board', ShowJobBoard::class)->middleware('auth');
+Route::get('/job-board', ShowJobBoard::class);
