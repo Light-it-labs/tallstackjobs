@@ -1,7 +1,7 @@
 @extends('layouts.base')
 
 @section('body')
-    <div class="flex flex-col justify-center py-8 sm:px-6 lg:px-8">
+    {{-- <div class="flex flex-col justify-center py-8 sm:px-6 lg:px-8">
         <div class="absolute top-0 right-0 mt-4 mr-4">
             @if (Route::has('login'))
                 <div class="space-x-4">
@@ -27,9 +27,10 @@
                 </div>
             @endif
         </div>
-    </div>
+    </div> --}}
 
     @yield('content')
+
     
     @isset($slot)
         {{ $slot }}
