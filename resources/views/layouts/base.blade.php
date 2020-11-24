@@ -41,10 +41,24 @@
                         <div class="block w-80">
                             <div class="flex items-center justify-end">
                                 <div class="flex">
-                                    <a href="{{ route('login') }}" class="px-3 py-2 rounded-md text-sm font-medium text-indigo-200 hover:text-white">Login</a>
-                                    @if (Route::has('register'))
-                                        <a href="{{ route('register') }}" class="px-3 py-2 rounded-md text-sm font-medium text-indigo-200 hover:text-white">Register</a>
-                                    @endif
+                                    @auth
+                                        <a
+                                            href="{{ route('logout') }}"
+                                            onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
+                                            class="px-3 py-2 rounded-md text-sm font-medium text-indigo-200 hover:text-white"
+                                        >
+                                            Log out
+                                        </a>
+                
+                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                            @csrf
+                                        </form>
+                                    @else
+                                        <a href="{{ route('login') }}" class="px-3 py-2 rounded-md text-sm font-medium text-indigo-200 hover:text-white">Login</a>
+                                        @if (Route::has('register'))
+                                            <a href="{{ route('register') }}" class="px-3 py-2 rounded-md text-sm font-medium text-indigo-200 hover:text-white">Register</a>
+                                        @endif
+                                    @endauth
                                 </div>
                             </div>
                         </div>
