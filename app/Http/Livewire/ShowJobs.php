@@ -10,9 +10,14 @@ class ShowJobs extends Component
 {
     use WithPagination;
 
-    public $search;
+    public $search = '';
 
     protected $queryString = ['search'];
+
+    public function updatingSearch()
+    {
+        $this->resetPage();
+    }
 
     public function render()
     {
