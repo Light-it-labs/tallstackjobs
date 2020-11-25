@@ -27,7 +27,7 @@
         <meta name="csrf-token" content="{{ csrf_token() }}">
     </head>
 
-    <body class="overflow-hidden">
+    <body>
         <div class="relative min-h-screen flex flex-col">
             <nav class="flex-shrink-0 bg-indigo-600">
                 <div class="max-w-7xl mx-auto px-2 sm:px-4 lg:px-8">
