@@ -16,4 +16,8 @@ class Job extends Model
     public function hashtags() {
         return $this->belongsToMany(Hashtag::class);
     }
+
+    public function company() {
+        return $this->belongsTo(Company::class);
+    }
 }

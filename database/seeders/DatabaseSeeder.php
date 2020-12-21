@@ -21,6 +21,9 @@ class DatabaseSeeder extends Seeder
             'password' => bcrypt('password'),
         ]);
         
-        Job::factory(10)->hasHashtags(5)->create();
+        Job::factory(10)
+        ->hasHashtags(random_int(1,6))
+        ->forCompany()
+        ->create();
     }
 }
