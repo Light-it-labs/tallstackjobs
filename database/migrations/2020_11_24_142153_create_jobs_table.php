@@ -20,6 +20,7 @@ class CreateJobsTable extends Migration
             $table->string('email');
             $table->double('salary');
             $table->string('currency');
+            $table->string('apply_link');
             $table->text('description');
 
             $table->timestamps();
