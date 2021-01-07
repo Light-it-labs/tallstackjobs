@@ -19,8 +19,10 @@
         "livewire/livewire": "^2.3"
     },
     "require-dev": {
+        "backpack/generators": "^3.1",
         "facade/ignition": "^2.5",
         "fakerphp/faker": "^1.9.1",
+        "laracasts/generators": "^2.0",
         "mockery/mockery": "^1.4.2",
         "nunomaduro/collision": "^5.0",
         "phpunit/phpunit": "^9.3.3"

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "aae885bb0cc0fd997f08d8ae1555e686",
+    "content-hash": "f1ee04e4d86f1de5b1e18047c3888e8e",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -5344,6 +5344,70 @@
     ],
     "packages-dev": [
         {
+            "name": "backpack/generators",
+            "version": "v3.1.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Laravel-Backpack/Generators.git",
+                "reference": "de9f46aee1bfb963907d9c9fe7cd35d5472b3d2d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Laravel-Backpack/Generators/zipball/de9f46aee1bfb963907d9c9fe7cd35d5472b3d2d",
+                "reference": "de9f46aee1bfb963907d9c9fe7cd35d5472b3d2d",
+                "shasum": ""
+            },
+            "require": {
+                "backpack/crud": "4.1.*"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^9.0||^7.0",
+                "scrutinizer/ocular": "~1.1"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0-dev"
+                },
+                "laravel": {
+                    "providers": [
+                        "Backpack\\Generators\\GeneratorsServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Backpack\\Generators\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "proprietary"
+            ],
+            "authors": [
+                {
+                    "name": "Cristian Tone",
+                    "email": "cristitone@outlook.com",
+                    "homepage": "http://updivision.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Generate files for laravel projects",
+            "homepage": "https://github.com/laravel-backpack/generators",
+            "keywords": [
+                "config",
+                "generators",
+                "model",
+                "request",
+                "view"
+            ],
+            "support": {
+                "issues": "https://github.com/Laravel-Backpack/Generators/issues",
+                "source": "https://github.com/Laravel-Backpack/Generators/tree/v3.1.4"
+            },
+            "time": "2020-10-13T13:42:05+00:00"
+        },
+        {
             "name": "doctrine/instantiator",
             "version": "1.4.0",
             "source": {
@@ -5744,6 +5808,64 @@
                 "test"
             ],
             "time": "2020-07-09T08:09:16+00:00"
+        },
+        {
+            "name": "laracasts/generators",
+            "version": "2.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/laracasts/Laravel-5-Generators-Extended.git",
+                "reference": "0b8b3d300cc948217f7547502b6de5db6fbafa70"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/laracasts/Laravel-5-Generators-Extended/zipball/0b8b3d300cc948217f7547502b6de5db6fbafa70",
+                "reference": "0b8b3d300cc948217f7547502b6de5db6fbafa70",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/support": "~6.0|~7.0|~8.0"
+            },
+            "require-dev": {
+                "phpspec/phpspec": "~6.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Laracasts\\Generators\\GeneratorsServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Laracasts\\Generators\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Jeffrey Way",
+                    "email": "jeffrey@laracasts.com"
+                },
+                {
+                    "name": "Cristian Tabacitu",
+                    "email": "hello@tabaciu.ro"
+                }
+            ],
+            "description": "Advanced Laravel generators, that include schema information.",
+            "keywords": [
+                "generators",
+                "laravel"
+            ],
+            "support": {
+                "issues": "https://github.com/laracasts/Laravel-5-Generators-Extended/issues",
+                "source": "https://github.com/laracasts/Laravel-5-Generators-Extended/tree/2.0.0"
+            },
+            "time": "2020-09-10T13:49:13+00:00"
         },
         {
             "name": "mockery/mockery",
