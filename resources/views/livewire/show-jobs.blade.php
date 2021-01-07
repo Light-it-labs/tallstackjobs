@@ -12,7 +12,7 @@
     <div class="bg-white min-w-0 flex-1 px-32 mb-5">
         <template x-for="(job, index) in {{ json_encode($jobs->toArray()['data']) }}" :key="index">
             <div class="flex justify-between border-b border-gray-100 p-5 cursor-pointer" x-on:click="current = job; showModal = true">
-                <img class="self-start" src="http://placehold.it/80x80.jpg" alt="">
+                <img class="self-start" :src="job.company" alt="">
                 <div class="flex-1 pl-3">
                     <h2 class="font-medium text-xl" x-text="job.name"></h2>
                     <p x-text="job.description"></p>
@@ -20,7 +20,7 @@
                         <span x-text="hashtag.label" class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-gray-100 text-gray-800"></span>
                     </template>
                     <br>
-                    <button type="button" class="inline-flex items-center px-2.5 py-1.5 border border-transparent text-xs font-medium rounded shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                    <button @click.stop="window.location = job.apply_link" type="button" class="inline-flex items-center px-2.5 py-1.5 border border-transparent text-xs font-medium rounded shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                     Apply
                     </button>
                 </div>
@@ -59,9 +59,9 @@
                     <button @click="showModal = false" type="button" class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-indigo-600 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 sm:ml-3 sm:w-auto sm:text-sm">
                     Close
                     </button>
-                    <button type="button" class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-indigo-600 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 sm:ml-3 sm:w-auto sm:text-sm">
+                    <a :href="current.apply_link" class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-indigo-600 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 sm:ml-3 sm:w-auto sm:text-sm">
                     Apply
-                    </button>
+                    </a>
                 </div>
                 </div>
             </div>
