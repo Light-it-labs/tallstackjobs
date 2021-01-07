@@ -11,7 +11,7 @@ class Job extends Model
     use HasFactory;
 
     protected $fillable = [
-        'name', 'description', 'currency', 'salary', 'email'
+        'name', 'description', 'currency', 'salary', 'email', 'apply_link', 'company_id'
     ];
 
     public function hashtags() {
