@@ -24,7 +24,7 @@ return [
     // ----
 
     // Project name. Shown in the window title.
-    'project_name' => 'Backpack Admin Panel',
+    'project_name' => 'Tallstack Administration',
 
     // When clicking on the admin panel's top-left logo/name,
     // where should the user be redirected?
@@ -212,9 +212,9 @@ return [
     */
 
     // Fully qualified namespace of the User model
-    'user_model_fqn' => config('auth.providers.users.model'),
+    //'user_model_fqn' => config('auth.providers.users.model'),
     // 'user_model_fqn' => App\User::class, // works on Laravel <= 7
-    // 'user_model_fqn' => App\Models\User::class, // works on Laravel >= 8
+    'user_model_fqn' => App\Models\User::class, // works on Laravel >= 8
 
     // The classes for the middleware to check if the visitor is an admin
     // Can be a single class or an array of classes
