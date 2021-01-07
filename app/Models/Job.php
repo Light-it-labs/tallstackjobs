@@ -12,4 +12,12 @@ class Job extends Model
     protected $fillable = [
         'name', 'description', 'currency', 'salary', 'email'
     ];
+
+    public function hashtags() {
+        return $this->belongsToMany(Hashtag::class);
+    }
+
+    public function company() {
+        return $this->belongsTo(Company::class);
+    }
 }
