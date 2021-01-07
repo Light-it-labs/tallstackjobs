@@ -1,26 +1,29 @@
 <div x-data="{ current: null, showModal: false }">
-    <div class="w-full flex justify-center px-32 mb-5">
-        <input wire:model="search" id="search" name="search" type="text" class="appearance-none block w-96 px-3 py-2 m-5 border border-gray-300 rounded-md placeholder-gray-400 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5" placeholder="Search query ..."/>
-    
-        <span class="block rounded-md" wire:click="handleSearch">
+    <div class="max-w-screen-lg mx-auto flex justify-center px-2 md:px-0 mb-5">
+        <input wire:model="search" id="search" name="search" type="text" class="appearance-none block w-full md:w-3/5 px-3 py-2 m-5 border border-gray-300 rounded-md placeholder-gray-400 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5" placeholder="Search open positions..."/>
+<!--         <span class="block rounded-md" wire:click="handleSearch">
             <button type="submit" class="flex justify-center m-5 w-full px-3 py-2 text-sm font-medium text-white bg-indigo-600 rounded-md hover:bg-indigo-500 focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo active:bg-indigo-700 transition duration-150 ease-in-out">
                 Search
             </button>
-        </span>
+        </span> -->
     </div>
     
-    <div class="bg-white min-w-0 flex-1 px-32 mb-5">
+    <div class="max-w-screen-lg mx-auto min-w-0 flex-1 mb-5">
         <template x-for="(job, index) in {{ json_encode($jobs->toArray()['data']) }}" :key="index">
-            <div class="flex justify-between border-b border-gray-100 p-5 cursor-pointer" x-on:click="current = job; showModal = true">
-                <img class="self-start" :src="job.company" alt="">
+            <div class="w-full md:w-3/5 mx-auto flex justify-between border-b last:border-b-0 px-2 md:px-0 py-5 cursor-pointer" x-on:click="current = job; showModal = true">
+                <img style="margin-top:5px;" class="self-start rounded" src="http://placehold.it/80x80.jpg" alt="">
                 <div class="flex-1 pl-3">
                     <h2 class="font-medium text-xl" x-text="job.name"></h2>
-                    <p x-text="job.description"></p>
-                    <template x-for="(hashtag, index) in job.hashtags">
-                        <span x-text="hashtag.label" class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-gray-100 text-gray-800"></span>
-                    </template>
-                    <br>
-                    <button @click.stop="window.location = job.apply_link" type="button" class="inline-flex items-center px-2.5 py-1.5 border border-transparent text-xs font-medium rounded shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                    <p class="text-sm font-light" x-text="job.description"></p>
+                    <div class="mt-3" x-show="job.hashtags.length > 0">                    
+                        <template x-for="(hashtag, index) in job.hashtags">
+                            <span x-text="hashtag.label" class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-gray-400 text-white"></span>
+                        </template>
+                    </div>
+                    <button
+                    @click.stop="window.location = job.apply_link"
+                    type="button"
+                    class="inline-flex items-center px-2 py-1 mt-6 border border-transparent text-xs font-medium rounded shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                     Apply
                     </button>
                 </div>
@@ -28,7 +31,7 @@
         </template>
     </div>
 
-    <div class="bg-white min-w-0 flex-1 px-32 mb-5">
+    <div class="max-w-screen-lg mx-auto px-2 md:px-0 min-w-0 flex-1 mb-5">
         {{ $jobs->links() }}
     </div>
 
