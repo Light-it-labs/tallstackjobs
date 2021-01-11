@@ -71,7 +71,7 @@ return [
     // ------
 
     // Menu logo. You can replace this with an <img> tag if you have a logo.
-    'project_logo'   => '<b>Back</b>pack',
+    'project_logo'   => '<img style="width:30px;" src="/images/tallstack-logo.svg"/>',
 
     // Show / hide breadcrumbs on admin panel pages.
     'breadcrumbs' => true,
