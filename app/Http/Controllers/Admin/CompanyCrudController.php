@@ -62,7 +62,7 @@ class CompanyCrudController extends CrudController
         CRUD::setValidation(CompanyRequest::class);
 
         CRUD::field('name');
-        CRUD::field('logo');
+        CRUD::field('logo')->type('image');
 
         /**
          * Fields can be defined using the fluent syntax or array syntax:
