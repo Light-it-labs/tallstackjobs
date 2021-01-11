@@ -11,7 +11,7 @@
     <div class="max-w-screen-lg mx-auto min-w-0 flex-1 mb-5">
         <template x-for="(job, index) in {{ json_encode($jobs->toArray()['data']) }}" :key="index">
             <div class="w-full md:w-3/5 mx-auto flex justify-between border-b last:border-b-0 px-2 md:px-0 py-5 cursor-pointer" x-on:click="current = job; showModal = true">
-                <img style="margin-top:5px;" class="self-start rounded" src="http://placehold.it/80x80.jpg" alt="">
+                <img style="margin-top:5px;" class="self-start rounded" x-bind:src="job.company.logo" alt="">
                 <div class="flex-1 pl-3">
                     <h2 class="font-medium text-xl" x-text="job.name"></h2>
                     <p class="text-sm font-light" x-text="job.description"></p>
@@ -49,7 +49,7 @@
                 <div class="inline-block align-bottom bg-white rounded-lg px-4 pt-5 pb-4 text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full sm:p-6" role="dialog" aria-modal="true" aria-labelledby="modal-headline" @click.away="showModal = false">
                 <div class="sm:flex sm:items-start">
                     <div class="flex flex-col sm:flex-row justify-between mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
-                        <img class="self-start" src="http://placehold.it/80x80.jpg" alt="">
+                        <img class="self-start" x-bind:src="current.company.logo" alt="">
                         <div class="pl-3">
                             <h3 class="text-lg leading-6 font-medium text-gray-900" id="modal-headline">
                                 <p x-text="current.name"></p>
