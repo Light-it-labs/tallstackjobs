@@ -25,6 +25,7 @@ class JobFactory extends Factory
             'name' => $this->faker->jobTitle,
             'description' => $this->faker->text(200),
             'currency' => 'USD',
+            'apply_link' => '#',
             'salary' => $this->faker->numberBetween(200, 800),
             'email' => $this->faker->unique()->safeEmail,
         ];
