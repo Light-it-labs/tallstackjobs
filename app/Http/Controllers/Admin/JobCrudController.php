@@ -73,6 +73,7 @@ class JobCrudController extends CrudController
         CRUD::field('apply_link');
         CRUD::field('company_id');
         CRUD::field('description');
+        CRUD::field('hashtags');
 
         /**
          * Fields can be defined using the fluent syntax or array syntax:
