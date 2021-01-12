@@ -1,6 +1,23 @@
 <div x-data="{ current: null, showModal: false }">
-    <div class="max-w-screen-lg mx-auto flex justify-center px-2 md:px-0 mb-5">
-        <input wire:model="search" id="search" name="search" type="text" class="appearance-none block w-full md:w-3/5 px-3 py-2 m-5 border border-gray-300 rounded-md placeholder-gray-400 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5" placeholder="Search open positions..."/>
+    <div class="max-w-screen-sm mx-auto px-3">
+        <input wire:model="search" id="search" name="search" type="text" autocomplete="off"
+        class="
+        appearance-none
+        block
+        w-full
+        p-3
+        my-5
+        border
+        border-gray-300
+        rounded-md
+        placeholder-gray-400
+        focus:outline-none
+        focus:shadow-outline-blue
+        focus:border-blue-300
+        transition
+        duration-150
+        ease-in-out
+        sm:leading-5" placeholder="Search open positions..."/>
 <!--         <span class="block rounded-md" wire:click="handleSearch">
             <button type="submit" class="flex justify-center m-5 w-full px-3 py-2 text-sm font-medium text-white bg-indigo-600 rounded-md hover:bg-indigo-500 focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo active:bg-indigo-700 transition duration-150 ease-in-out">
                 Search
@@ -8,9 +25,9 @@
         </span> -->
     </div>
     
-    <div class="max-w-screen-lg mx-auto min-w-0 flex-1 mb-5">
+    <div class="max-w-screen-sm mx-auto min-w-0 md:px-3 mb-5">
         <template x-for="(job, index) in {{ json_encode($jobs->toArray()['data']) }}" :key="index">
-            <div class="w-full md:w-3/5 mx-auto flex justify-between border-b last:border-b-0 px-2 md:px-0 py-5 cursor-pointer" x-on:click="current = job; showModal = true">
+            <div class="w-full flex justify-between border-b border-gray-200 last:border-b-0 px-2 md:px-0 py-5 cursor-pointer" x-on:click="current = job; showModal = true">
                 <img style="margin-top:5px;" class="self-start rounded" x-bind:src="job.company.logo" alt="">
                 <div class="flex-1 pl-3">
                     <h2 class="font-medium text-xl" x-text="job.name"></h2>
@@ -31,7 +48,7 @@
         </template>
     </div>
 
-    <div class="max-w-screen-lg mx-auto px-2 md:px-0 min-w-0 flex-1 mb-5">
+    <div class="max-w-screen-sm mx-auto px-3 min-w-0 mb-5">
         {{ $jobs->links() }}
     </div>
 
