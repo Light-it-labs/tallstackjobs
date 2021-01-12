@@ -38,7 +38,7 @@
             <nav class="flex-shrink-0 bg-white border-b">
                 <div class="max-w-screen-sm mx-auto px-3 md:px-0">
                     <div class="relative flex items-center justify-between h-16">
-                        <div class="flex items-center px-2 lg:px-0 xl:w-64">
+                        <div class="flex items-center px-3 xl:w-64">
                             <div class="flex-shrink-0">
                                 <a href="{{ url('/') }}"><img class="h-8 w-auto" src="images/tallstack-logo.svg" alt="Home"></a>
                             </div>
