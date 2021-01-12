@@ -1,13 +1,11 @@
 <div x-data="{ current: null, showModal: false }">
-    <div class="max-w-screen-sm mx-auto md:px-3">
+    <div class="max-w-screen-sm mx-auto px-3">
         <input wire:model="search" id="search" name="search" type="text" autocomplete="off"
         class="
         appearance-none
         block
-        md:w-full
-        w-11/12
+        w-full
         p-3
-        mx-auto
         my-5
         border
         border-gray-300

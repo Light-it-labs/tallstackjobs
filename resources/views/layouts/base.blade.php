@@ -38,13 +38,13 @@
             <nav class="flex-shrink-0 bg-white border-b">
                 <div class="max-w-screen-sm mx-auto px-3 md:px-0">
                     <div class="relative flex items-center justify-between h-16">
-                        <div class="flex items-center px-3 xl:w-64">
+                        <div class="flex items-center md:px-3">
                             <div class="flex-shrink-0">
-                                <a href="{{ url('/') }}"><img class="h-8 w-auto" src="images/tallstack-logo.svg" alt="Home"></a>
+                                <a href="{{ url('/') }}"><img class="h-8 w-auto mr-6" src="images/tallstack-logo.svg" alt="Home"></a>
                             </div>
+                            <h1 class="text-lg flex-1 font-extrabold mt-1">TALL Stack Job Board</h1>
                         </div>
-            
-                        <div class="block w-80">
+                        <div class="block">
                             <div class="flex items-center justify-end">
                                 <div class="flex">
                                     @auth
@@ -70,6 +70,7 @@
                             </div>
                         </div>
                     </div>
+                    <h2 class="text-sm md:px-3 mb-3">TALL Stack <span class="text-gray-400">Jobs created by</span> TALL Stack <span class="text-gray-400">lovers for</span> TALL Stack <span class="text-gray-400">developers.</span></h2> 
                 </div>
             </nav>
             
