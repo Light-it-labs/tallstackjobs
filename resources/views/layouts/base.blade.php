@@ -3,6 +3,8 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="TALL Stack Jobs created by TALL Stack lovers for TALL Stack developers." />
+        
         @hasSection('title')
 
             <title>@yield('title') - {{ config('app.name') }}</title>
@@ -46,17 +48,20 @@
         <div class="relative min-h-screen flex flex-col">
             <nav class="flex-shrink-0 bg-white border-b">
                 <div class="max-w-screen-sm mx-auto px-3 md:px-0">
-                    <div class="relative flex items-center justify-between h-16">
+                    <div class="relative flex items-center justify-between h-24">
                         <div class="flex items-center md:px-3">
                             <div class="flex-shrink-0">
                                 <a href="{{ url('/') }}"><img class="h-8 w-auto mr-6" src="images/tallstack-logo.svg" alt="Home"></a>
                             </div>
-                            <h1 class="text-lg flex-1 font-extrabold mt-1">TALL Stack Job Board</h1>
+                            <h1 class="text-lg flex-1 font-extrabold mt-1"><a href="{{ url('/') }}">TALL Stack Job Board</a></h1>
                         </div>
                         <div class="block">
                             <div class="flex items-center justify-end">
-                                <div class="flex">
+                                <div class="flex items-center">
                                     @auth
+                                        <a href="#" class="flex items-center pl-2 pr-3 rounded-md text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700">
+                                        <span class="text-2xl pr-2">+</span> <span>New Job Post</span>
+                                        </a>
                                         <a href="{{ route('jobs') }}" class="px-3 py-2 rounded-md text-sm font-medium text-indigo-800 hover:text-indigo-600">Jobs</a>
                                         <a
                                             href="{{ route('logout') }}"
