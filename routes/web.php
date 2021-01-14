@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Auth\EmailVerificationController;
 use App\Http\Controllers\Auth\LogoutController;
+use App\Http\Controllers\CreateJob;
 use App\Http\Livewire\Auth\Login;
 use App\Http\Livewire\Auth\Passwords\Confirm;
 use App\Http\Livewire\Auth\Passwords\Email;
@@ -59,4 +60,8 @@ Route::middleware('auth')->group(function () {
 
 Route::get('/jobs', ShowJobs::class)
     ->name('jobs')
+    ->middleware('auth');
+
+Route::get('/job/create', [CreateJob::class, 'create'])
+    ->name('job-create')
     ->middleware('auth');

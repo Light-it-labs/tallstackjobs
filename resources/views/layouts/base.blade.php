@@ -32,12 +32,12 @@
         <script src="{{ url(mix('js/app.js')) }}" defer></script>
 
         <!-- Global site tag (gtag.js) - Google Analytics -->
-        <script async src=“https://www.googletagmanager.com/gtag/js?id=G-Q8EZ82GHKC”></script>
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-Q8EZ82GHKC"></script>
         <script>
         window.dataLayer = window.dataLayer || [];
         function gtag(){dataLayer.push(arguments);}
-        gtag(‘js’, new Date());
-        gtag(‘config’, ‘G-Q8EZ82GHKC’);
+        gtag('js', new Date());
+        gtag('config', 'G-Q8EZ82GHKC');
         </script>
 
         <!-- CSRF Token -->
@@ -51,17 +51,17 @@
                     <div class="relative flex items-center justify-between h-24">
                         <div class="flex items-center md:px-3">
                             <div class="flex-shrink-0">
-                                <a href="{{ url('/') }}"><img class="h-8 w-auto mr-6" src="images/tallstack-logo.svg" alt="Home"></a>
+                                <a href="{{ url('/') }}"><img class="h-8 w-auto mr-6" src="{{url('/images/tallstack-logo.svg')}}" alt="Home"></a>
                             </div>
                             <h1 class="text-lg flex-1 font-extrabold mt-1"><a href="{{ url('/') }}">TALL Stack Job Board</a></h1>
                         </div>
                         <div class="block">
                             <div class="flex items-center justify-end">
                                 <div class="flex items-center">
-                                    @auth
-                                        <a href="#" class="flex items-center pl-2 pr-3 rounded-md text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700">
-                                        <span class="text-2xl pr-2">+</span> <span>New Job Post</span>
+                                        <a href="{{ route('job-create') }}" class="flex items-center pl-2 pr-3 rounded-md text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700">
+                                            <span class="text-2xl pr-2">+</span> <span>New Job Post</span>
                                         </a>
+                                    @auth
                                         <a href="{{ route('jobs') }}" class="px-3 py-2 rounded-md text-sm font-medium text-indigo-800 hover:text-indigo-600">Jobs</a>
                                         <a
                                             href="{{ route('logout') }}"
@@ -84,7 +84,9 @@
                             </div>
                         </div>
                     </div>
+                    
                     <h2 class="text-sm md:px-3 mb-3">TALL Stack <span class="text-gray-400">Jobs created by</span> TALL Stack <span class="text-gray-400">lovers for</span> TALL Stack <span class="text-gray-400">developers.</span></h2> 
+                   
                 </div>
             </nav>
             
