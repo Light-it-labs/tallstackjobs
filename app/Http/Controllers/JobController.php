@@ -3,13 +3,18 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\StoreJobRequest;
 use App\Models\Hashtag;
 
-class CreateJob extends Controller
+class JobController extends Controller
 {
     public function create() {
         return view('create-jobs', [
             'tags' => Hashtag::all('label')
         ]);
+    }
+
+    public function store(StoreJobRequest $request) {
+        $validated = $request->validated();
     }
 }

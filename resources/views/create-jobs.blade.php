@@ -3,9 +3,9 @@
 @section('content')
 <div class="w-full max-w-screen-sm mx-auto px-2 mb-8">
 
-    <h1 class="text-2xl font-bold mt-3 mb-6">Add new job</h1>
+    <h1 class="text-2xl font-bold my-6">Add new job</h1>
 
-    <form action="/job/create" method="POST">
+    <form action="{{ route('job-store') }}" method="POST">
     @csrf
 
     <div class="mb-6">
@@ -17,8 +17,10 @@
             id="name"
             class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md p-2"
             placeholder="Which role does your company need?"
-            autocomplete="off">
+            autocomplete="off"
+            value="{{ old('name') }}">
         </div>
+        <p class="text-red-500 text-xs mt-1">{{ $errors->first('name') }}</p>
     </div>
 
     <div class="mb-6">
@@ -30,47 +32,10 @@
             id="description"
             class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md p-2"
             placeholder="Description of the role"
-            autocomplete="off"></textarea>
-        </div>
-    </div>
-
-    <div class="mb-6">
-        <label for="salary" class="block text-sm font-medium text-gray-700">Salary</label>
-        <div class="mt-1">
-            <input 
-            type="text"
-            name="salary"
-            id="salary"
-            class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md p-2"
             autocomplete="off"
-            placeholder="How much will you pay?">
+            value="{{ old('description') }}"></textarea>
         </div>
-    </div>
-
-    <div class="mb-6">
-        <label for="apply_link" class="block text-sm font-medium text-gray-700">Apply link</label>
-        <div class="mt-1">
-            <input 
-            type="text"
-            name="apply_link"
-            id="apply_link"
-            class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md p-2"
-            autocomplete="off"
-            placeholder="http://">
-        </div>
-    </div>
-
-    <div class="mb-6">
-        <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
-        <div class="mt-1">
-            <input 
-            type="text"
-            name="email"
-            id="email"
-            class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md p-2"
-            placeholder="Where do applicants send CVs?"
-            autocomplete="off">
-        </div>
+        <p class="text-red-500 text-xs mt-1">{{ $errors->first('description') }}</p>
     </div>
 
     <div
@@ -82,7 +47,7 @@
         ownTags: []
     }"
     x-init="filteredTags = tags"
-    class="mb-6">
+    class="mb-6 relative">
         <p class="block text-sm font-medium text-gray-700">Tags</p>
         <div
         @click.away="!filter ? open = false : null"
@@ -105,11 +70,56 @@
             <input x-model="filter" @click="open = true" @input="$event.target.value === '' ? filteredTags = tags : filteredTags = tags.filter((tag) => tag.label.includes($event.target.value))" class="flex-1 ml-1" :class="ownTags.length > 0 ? 'px-2' : ''" type="text" name="filter" id="filter" placeholder="+ Add tags" autocomplete="off" />
             <input type="hidden" :value="ownTags.join(',')" name="tags" id="tags" />
         </div>
-        <ul x-show="open" class="bg-white cursor-pointer mt-1 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md h-40 overflow-y-auto">
+        <ul x-show="open" class="absolute bg-white cursor-pointer mt-1 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md h-40 overflow-y-auto">
             <template x-for="(tag, index) in filteredTags" :key="index">
                 <li @click="!ownTags.includes(tag.label) ? ownTags.push(tag.label) : null" x-text="tag.label" class="p-2 hover:bg-indigo-600 hover:text-white"></li>
             </template>
         </ul>
+    </div>
+
+    <div class="mb-6">
+        <label for="salary" class="block text-sm font-medium text-gray-700">Salary</label>
+        <div class="mt-1">
+            <input 
+            type="text"
+            name="salary"
+            id="salary"
+            class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md p-2"
+            autocomplete="off"
+            placeholder="How much will you pay?"
+            value="{{ old('salary') }}">
+        </div>
+        <p class="text-red-500 text-xs mt-1">{{ $errors->first('salary') }}</p>
+    </div>
+
+    <div class="mb-6">
+        <label for="apply_link" class="block text-sm font-medium text-gray-700">Apply link</label>
+        <div class="mt-1">
+            <input 
+            type="text"
+            name="apply_link"
+            id="apply_link"
+            class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md p-2"
+            autocomplete="off"
+            placeholder="https://"
+            value="{{ old('apply_link') }}">
+        </div>
+        <p class="text-red-500 text-xs mt-1">{{ $errors->first('apply_link') }}</p>
+    </div>
+
+    <div class="mb-6">
+        <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
+        <div class="mt-1">
+            <input 
+            type="text"
+            name="email"
+            id="email"
+            class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md p-2"
+            placeholder="Where do applicants send CVs?"
+            autocomplete="off"
+            value="{{ old('email') }}">
+        </div>
+        <p class="text-red-500 text-xs mt-1">{{ $errors->first('email') }}</p>
     </div>
 
     <div class="flex justify-end">
