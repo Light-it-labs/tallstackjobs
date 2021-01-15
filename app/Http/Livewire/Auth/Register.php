@@ -4,6 +4,7 @@ namespace App\Http\Livewire\Auth;
 
 use App\Providers\RouteServiceProvider;
 use App\Models\User;
+use App\Models\Company;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Auth\Events\Registered;
@@ -13,6 +14,12 @@ class Register extends Component
 {
     /** @var string */
     public $name = '';
+
+    /** @var string */
+    public $company_name = '';
+
+    /** @var string */
+    public $company_logo = '';
 
     /** @var string */
     public $email = '';
@@ -27,13 +34,21 @@ class Register extends Component
     {
         $this->validate([
             'name' => ['required'],
+            'company_name' => ['required', 'unique:companies,name'],
+            'company_logo' => ['required', 'image', 'dimensions:width=80,height=80,ratio=0/0'],
             'email' => ['required', 'email', 'unique:users'],
             'password' => ['required', 'min:8', 'same:passwordConfirmation'],
+        ]);
+
+        $company = Company::create([
+            'name' => $this->company_name,
+            'logo' => $this->company_logo,
         ]);
 
         $user = User::create([
             'email' => $this->email,
             'name' => $this->name,
+            'company_id' => $company->id,
             'password' => Hash::make($this->password),
         ]);
 
