@@ -22,3 +22,7 @@
     </div>
 </div>
 @endsection
+
+<script type="application/ld+json">
+    {!! GJob::generate() !!}
+</script>
