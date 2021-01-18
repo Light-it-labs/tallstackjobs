@@ -9,9 +9,12 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Auth\Events\Registered;
 use Livewire\Component;
+use Livewire\WithFileUploads;
 
 class Register extends Component
 {
+    use WithFileUploads;
+
     /** @var string */
     public $name = '';
 
@@ -40,10 +43,17 @@ class Register extends Component
             'password' => ['required', 'min:8', 'same:passwordConfirmation'],
         ]);
 
-        $company = Company::create([
+        $company_logo_path = $this->company_logo->store('/images/company/logos', 'public');
+        
+        $company = new Company();
+            
+        //setRawAttributes() does not go through model mutator    
+        $company->setRawAttributes([
             'name' => $this->company_name,
-            'logo' => $this->company_logo,
+            'logo' => $company_logo_path
         ]);
+
+        $company->save();
 
         $user = User::create([
             'email' => $this->email,

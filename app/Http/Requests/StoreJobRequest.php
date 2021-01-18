@@ -25,6 +25,7 @@ class StoreJobRequest extends FormRequest
     {
         return [
             'name' => ['required'],
+            'company_id' => ['required', 'integer'],
             'description' => ['required'],
             'salary' => ['required'],
             'apply_link' => 'required|url',

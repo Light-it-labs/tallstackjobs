@@ -8,6 +8,8 @@
     <form action="{{ route('job-store') }}" method="POST">
     @csrf
 
+    <input type="hidden" name="company_id" id="company_id" value="{{ Auth::user()->company_id }}" />
+
     <div class="mb-6">
         <label for="name" class="block text-sm font-medium text-gray-700">Name</label>
         <div class="mt-1">
@@ -33,7 +35,7 @@
             class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md p-2"
             placeholder="Description of the role"
             autocomplete="off"
-            value="{{ old('description') }}"></textarea>
+            >{{ old('description') }}</textarea>
         </div>
         <p class="text-red-500 text-xs mt-1">{{ $errors->first('description') }}</p>
     </div>
@@ -65,14 +67,14 @@
         rounded-md
         p-2">
             <template x-for="(tag, index) in ownTags" :key="index">
-                <span @click="ownTags.splice(ownTags.indexOf(tag), 1)" x-text="'x ' + tag" class="inline-flex items-center self-center cursor-pointer mr-1 my-1 px-3 py-1 rounded-full text-xs font-medium bg-gray-400 text-white"></span>
+                <span @click="removeTag(tag.id, ownTags)" x-text="'x ' + tag.label" class="inline-flex items-center self-center cursor-pointer mr-1 my-1 px-3 py-1 rounded-full text-xs font-medium bg-gray-400 text-white"></span>
             </template>
-            <input x-model="filter" @click="open = true" @input="$event.target.value === '' ? filteredTags = tags : filteredTags = tags.filter((tag) => tag.label.includes($event.target.value))" class="flex-1 ml-1" :class="ownTags.length > 0 ? 'px-2' : ''" type="text" name="filter" id="filter" placeholder="+ Add tags" autocomplete="off" />
-            <input type="hidden" :value="ownTags.join(',')" name="tags" id="tags" />
+            <input x-model="filter" @click="open = true" @input="$event.target.value === '' ? filteredTags = tags : filteredTags = tags.filter((tag) => tag.label.includes($event.target.value))" class="flex-1 ml-1" :class="ownTags.length > 0 ? 'px-2' : ''" type="text" placeholder="+ Add tags" autocomplete="off" />
+            <input type="hidden" :value="getOwnTagsIds(ownTags)" name="tags" id="tags" />
         </div>
         <ul x-show="open" class="absolute bg-white cursor-pointer mt-1 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md h-40 overflow-y-auto">
             <template x-for="(tag, index) in filteredTags" :key="index">
-                <li @click="!ownTags.includes(tag.label) ? ownTags.push(tag.label) : null" x-text="tag.label" class="p-2 hover:bg-indigo-600 hover:text-white"></li>
+                <li @click="!isTagIncluded(tag.id, ownTags) ? ownTags.push({id:tag.id, label:tag.label}) : null" x-text="tag.label" class="p-2 hover:bg-indigo-600 hover:text-white"></li>
             </template>
         </ul>
     </div>
@@ -129,3 +131,28 @@
     </form>
 </div>
 @endsection
+
+<script>
+function isTagIncluded(tagID, ownTags) {
+    for (let tag of ownTags) {
+        if (tag.id === tagID) return true; 
+    }
+    return false;
+}
+
+function removeTag(tagID, ownTags) {
+    for (let tag of ownTags) {
+        if (tag.id === tagID) {
+            ownTags.splice(ownTags.indexOf(tag), 1);
+        } 
+    }
+}
+
+function getOwnTagsIds(ownTags) {
+    const ids = [];
+    for (tag of ownTags) {
+        ids.push(tag.id);
+    }
+    return ids.join(",");
+}
+</script>
