@@ -66,7 +66,7 @@
                 <div class="inline-block align-bottom bg-white rounded-lg px-4 pt-5 pb-4 text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full sm:p-6" role="dialog" aria-modal="true" aria-labelledby="modal-headline" @click.away="showModal = false">
                 <div class="sm:flex sm:items-start">
                     <div class="flex flex-col sm:flex-row justify-between mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
-                        <img class="self-start" x-bind:src="current.company.logo" alt="">
+                        <img class="self-start mx-auto mb-3 sm:mb-0 sm:mx-0" x-bind:src="current.company.logo" alt="">
                         <div class="pl-3">
                             <h3 class="text-lg leading-6 font-medium text-gray-900" id="modal-headline">
                                 <p x-text="current.name"></p>
