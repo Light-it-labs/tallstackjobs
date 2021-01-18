@@ -15,6 +15,15 @@ class JobController extends Controller
         ]);
     }
 
+    public function show($id) {
+
+        $job = Job::find($id);
+
+        return view('show-job', [
+            'job' => $job,
+        ]);
+    }
+
     public function store(StoreJobRequest $request) {
         
         $validated = $request->validated();

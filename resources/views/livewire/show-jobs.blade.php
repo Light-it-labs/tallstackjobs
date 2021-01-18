@@ -27,22 +27,22 @@
     
     <div class="max-w-screen-sm mx-auto min-w-0 md:px-3 mb-5">
         <template x-for="(job, index) in {{ json_encode($jobs->toArray()['data']) }}" :key="index">
-            <div class="w-full flex justify-between border-b border-gray-200 last:border-b-0 px-2 md:px-0 py-5 cursor-pointer" x-on:click="current = job; showModal = true">
-                <img style="margin-top:5px;" class="self-start rounded" x-bind:src="job.company.logo" alt="">
+            <div class="w-full flex justify-between border-b border-gray-200 last:border-b-0 px-2 md:px-0 py-5 cursor-pointer">
+                <a :href="'/jobs/' + job.id"><img style="margin-top:5px;" class="self-start rounded" x-bind:src="job.company.logo" alt=""></a>
                 <div class="flex-1 pl-3">
-                    <h2 class="font-medium text-xl" x-text="job.name"></h2>
-                    <p class="text-sm font-light" x-text="job.description"></p>
+                    <a :href="'/jobs/' + job.id" class="block">
+                        <h2 class="font-medium text-xl" x-text="job.name"></h2>
+                        <p class="text-sm font-light" x-text="job.description"></p>
+                    </a>
                     <div class="mt-3" x-show="job.hashtags.length > 0">                    
                         <template x-for="(hashtag, index) in job.hashtags">
                             <span x-text="hashtag.label" class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-gray-400 text-white"></span>
                         </template>
                     </div>
-                    <button
-                    @click.stop="window.location = job.apply_link"
-                    type="button"
+                    <a :href="job.apply_link"
                     class="inline-flex items-center px-2 py-1 mt-6 border border-transparent text-xs font-medium rounded shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                     Apply
-                    </button>
+                    </a>
                 </div>
             </div>
         </template>

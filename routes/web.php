@@ -62,6 +62,9 @@ Route::get('/jobs', ShowJobs::class)
     ->name('jobs')
     ->middleware('auth');
 
+Route::get('/jobs/{id}', [JobController::class, 'show'])
+    ->name('job-show');
+
 Route::get('/job/create', [JobController::class, 'create'])
     ->name('job-create')
     ->middleware('auth');
