@@ -18,11 +18,6 @@ class JobController extends Controller
 
     public function show(Job $job) {
 
-        //$job->load('company');
-        //$company = $job->company();
-
-        //dd($job);
-
         $job_metadata = [
             "datePosted" => $job->updated_at,
             "description" => $job->description,
