@@ -17,6 +17,7 @@ class CreateJobsTable extends Migration
             $table->id();
 
             $table->string('name');
+            $table->string('slug');
             $table->string('email');
             $table->double('salary');
             $table->string('currency');
