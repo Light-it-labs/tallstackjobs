@@ -19,8 +19,7 @@ class CreateJobsTable extends Migration
             $table->string('name');
             $table->string('slug');
             $table->string('email');
-            $table->double('salary');
-            $table->string('currency');
+            $table->string('salary');
             $table->string('apply_link');
             $table->foreignId('company_id')->constrained();
             $table->text('description');
