@@ -16,9 +16,12 @@ class JobController extends Controller
         ]);
     }
 
-    public function show($id) {
+    public function show(Job $job) {
 
-        $job = Job::find($id);
+        //$job->load('company');
+        //$company = $job->company();
+
+        //dd($job);
 
         $job_metadata = [
             "datePosted" => $job->updated_at,
