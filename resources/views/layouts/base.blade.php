@@ -45,28 +45,25 @@
     </head>
 
     <body style="background-color: #f9f9f9;">
-        <div class="relative min-h-screen flex flex-col">
+        <div class="relative flex flex-col min-h-screen">
             <nav class="flex-shrink-0 bg-white border-b">
-                <div class="max-w-screen-sm mx-auto px-3 md:px-0">
+                <div class="max-w-screen-sm px-3 mx-auto md:px-0">
                     <div class="relative flex items-center justify-between h-24">
                         <div class="flex items-center md:px-3">
                             <div class="flex-shrink-0">
-                                <a href="{{ url('/') }}"><img class="h-8 w-auto mr-6" src="{{url('/images/tallstack-logo.svg')}}" alt="Home"></a>
+                                <a href="{{ url('/') }}"><img class="w-auto h-8 mr-6" src="{{url('/images/tallstack-logo.svg')}}" alt="Home"></a>
                             </div>
-                            <h1 class="text-lg flex-1 font-extrabold mt-1"><a href="{{ url('/') }}">TALL Stack Job Board</a></h1>
+                            <h1 class="flex-1 hidden mt-1 text-lg font-extrabold sm:block"><a href="{{ url('/') }}">TALL Stack Job Board</a></h1>
                         </div>
                         <div class="block">
                             <div class="flex items-center justify-end">
                                 <div class="flex items-center">
-                                        <a href="{{ route('job-create') }}" class="flex items-center pl-2 pr-3 rounded-md text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700">
-                                            <span class="text-2xl pr-2">+</span> <span>New Job Post</span>
-                                        </a>
                                     @auth
-                                        <a href="{{ route('jobs') }}" class="px-3 py-2 rounded-md text-sm font-medium text-indigo-800 hover:text-indigo-600">Jobs</a>
+                                        <a href="{{ route('jobs') }}" class="px-3 py-2 text-sm font-medium text-indigo-800 rounded-md hover:text-indigo-600">Jobs</a>
                                         <a
                                             href="{{ route('logout') }}"
                                             onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
-                                            class="px-3 py-2 rounded-md text-sm font-medium text-indigo-800 hover:text-indigo-600"
+                                            class="px-3 py-2 text-sm font-medium text-indigo-800 rounded-md hover:text-indigo-600"
                                         >
                                             Log out
                                         </a>
@@ -75,18 +72,28 @@
                                             @csrf
                                         </form>
                                     @else
-                                        <a href="{{ route('login') }}" class="px-3 py-2 rounded-md text-sm font-medium text-indigo-800 hover:text-indigo-600">Login</a>
+                                        <a href="{{ route('login') }}" class="px-3 py-2 text-sm font-medium text-indigo-800 rounded-md hover:text-indigo-600">Login</a>
                                         @if (Route::has('register'))
-                                            <a href="{{ route('register') }}" class="px-3 py-2 rounded-md text-sm font-medium text-indigo-800 hover:text-indigo-600">Register</a>
+                                            <a href="{{ route('register') }}" class="px-3 py-2 text-sm font-medium text-indigo-800 rounded-md hover:text-indigo-600">Register</a>
                                         @endif
                                     @endauth
+                                    <a href="{{ route('job-create') }}" class="flex items-center pl-2 pr-3 ml-2 text-sm font-medium text-white bg-indigo-600 rounded-md hover:bg-indigo-700">
+                                         <span class="pr-2 text-2xl">+</span>
+                                         <span class="hidden sm:block">New Job Post</span>
+                                         <span class="sm:hidden">New</span>
+                                    </a>
                                 </div>
                             </div>
                         </div>
                     </div>
                     
-                    <h2 class="text-sm md:px-3 mb-3">TALL Stack <span class="text-gray-400">Jobs created by</span> TALL Stack <span class="text-gray-400">lovers for</span> TALL Stack <span class="text-gray-400">developers.</span></h2> 
-                   
+                    @if (Route::is('home'))
+                        <h2 class="mb-3 text-sm md:px-3">
+                        TALL Stack <span class="text-gray-400">Jobs created by</span>
+                        <br class="sm:hidden"> TALL Stack <span class="text-gray-400">lovers for</span>
+                        <br class="sm:hidden"> TALL Stack <span class="text-gray-400">developers.</span></h2> 
+                    @endif
+
                 </div>
             </nav>
             

@@ -1,9 +1,15 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="w-full max-w-screen-sm mx-auto px-2 mb-8">
+<div class="w-full max-w-screen-sm px-3 mx-auto mb-8">
+    
+    @if (Session::has('success'))
+    <div class="px-4 py-2 my-3 text-sm text-center text-white bg-green-500 rounded" x-data="{ show: true }" x-show="show" x-init="setTimeout(() => show = false, 3000)">
+        {{ Session::get('success') }}
+    </div>
+    @endif
 
-    <h1 class="text-2xl font-bold my-6">Add new job</h1>
+    <h1 class="my-6 text-2xl font-bold">Add new job</h1>
 
     <form action="{{ route('job-store') }}" method="POST">
     @csrf
@@ -17,12 +23,12 @@
             type="text"
             name="name"
             id="name"
-            class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md p-2"
+            class="block w-full p-2 text-sm border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
             placeholder="Which role does your company need?"
             autocomplete="off"
             value="{{ old('name') }}">
         </div>
-        <p class="text-red-500 text-xs mt-1">{{ $errors->first('name') }}</p>
+        <p class="mt-1 text-xs text-red-500">{{ $errors->first('name') }}</p>
     </div>
 
     <div class="mb-6">
@@ -32,12 +38,12 @@
             name="description"
             rows="5"
             id="description"
-            class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md p-2"
+            class="block w-full p-2 text-sm border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
             placeholder="Description of the role"
             autocomplete="off"
             >{{ old('description') }}</textarea>
         </div>
-        <p class="text-red-500 text-xs mt-1">{{ $errors->first('description') }}</p>
+        <p class="mt-1 text-xs text-red-500">{{ $errors->first('description') }}</p>
     </div>
 
     <div
@@ -49,30 +55,18 @@
         ownTags: []
     }"
     x-init="filteredTags = tags"
-    class="mb-6 relative">
+    class="relative mb-6">
         <p class="block text-sm font-medium text-gray-700">Tags</p>
         <div
         @click.away="!filter ? open = false : null"
-        class="
-        bg-white
-        mt-1
-        shadow-sm
-        focus:ring-indigo-500
-        focus:border-indigo-500
-        flex
-        flex-wrap
-        w-full
-        sm:text-sm
-        border-gray-300
-        rounded-md
-        p-2">
+        class="flex flex-wrap w-full p-2 mt-1 bg-white border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
             <template x-for="(tag, index) in ownTags" :key="index">
-                <span @click="removeTag(tag.id, ownTags)" x-text="'x ' + tag.label" class="inline-flex items-center self-center cursor-pointer mr-1 my-1 px-3 py-1 rounded-full text-xs font-medium bg-gray-400 text-white"></span>
+                <span @click="removeTag(tag.id, ownTags)" x-text="'x ' + tag.label" class="inline-flex items-center self-center px-3 py-1 my-1 mr-1 text-xs font-medium text-white bg-gray-400 rounded-full cursor-pointer"></span>
             </template>
-            <input x-model="filter" @click="open = true" @input="$event.target.value === '' ? filteredTags = tags : filteredTags = tags.filter((tag) => tag.label.includes($event.target.value))" class="flex-1 ml-1" :class="ownTags.length > 0 ? 'px-2' : ''" type="text" placeholder="+ Add tags" autocomplete="off" />
+            <input x-model="filter" @click="open = true" @input="$event.target.value === '' ? filteredTags = tags : filteredTags = tags.filter((tag) => tag.label.includes($event.target.value))" class="flex-1 ml-1 text-sm" :class="ownTags.length > 0 ? 'px-2' : ''" type="text" placeholder="+ Add tags" autocomplete="off" />
             <input type="hidden" :value="getOwnTagsIds(ownTags)" name="tags" id="tags" />
         </div>
-        <ul x-show="open" class="absolute bg-white cursor-pointer mt-1 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md h-40 overflow-y-auto">
+        <ul x-show="open" class="absolute block w-full h-40 mt-1 overflow-y-auto bg-white border-gray-300 rounded-md shadow-sm cursor-pointer focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
             <template x-for="(tag, index) in filteredTags" :key="index">
                 <li @click="!isTagIncluded(tag.id, ownTags) ? ownTags.push({id:tag.id, label:tag.label}) : null" x-text="tag.label" class="p-2 hover:bg-indigo-600 hover:text-white"></li>
             </template>
@@ -86,12 +80,12 @@
             type="text"
             name="salary"
             id="salary"
-            class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md p-2"
+            class="block w-full p-2 text-sm border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
             autocomplete="off"
             placeholder="How much will you pay?"
             value="{{ old('salary') }}">
         </div>
-        <p class="text-red-500 text-xs mt-1">{{ $errors->first('salary') }}</p>
+        <p class="mt-1 text-xs text-red-500">{{ $errors->first('salary') }}</p>
     </div>
 
     <div class="mb-6">
@@ -101,12 +95,12 @@
             type="text"
             name="apply_link"
             id="apply_link"
-            class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md p-2"
+            class="block w-full p-2 text-sm border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
             autocomplete="off"
             placeholder="https://"
             value="{{ old('apply_link') }}">
         </div>
-        <p class="text-red-500 text-xs mt-1">{{ $errors->first('apply_link') }}</p>
+        <p class="mt-1 text-xs text-red-500">{{ $errors->first('apply_link') }}</p>
     </div>
 
     <div class="mb-6">
@@ -116,16 +110,16 @@
             type="text"
             name="email"
             id="email"
-            class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md p-2"
+            class="block w-full p-2 text-sm border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
             placeholder="Where do applicants send CVs?"
             autocomplete="off"
             value="{{ old('email') }}">
         </div>
-        <p class="text-red-500 text-xs mt-1">{{ $errors->first('email') }}</p>
+        <p class="mt-1 text-xs text-red-500">{{ $errors->first('email') }}</p>
     </div>
 
     <div class="flex justify-end">
-        <input type="submit" value="Submit" class="cursor-pointer py-3 px-6 rounded-md text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700">
+        <input type="submit" value="Submit" class="px-6 py-3 text-sm font-medium text-white bg-indigo-600 rounded-md cursor-pointer hover:bg-indigo-700">
     </div>
 
     </form>

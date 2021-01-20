@@ -17,6 +17,7 @@ class CreateJobsTable extends Migration
             $table->id();
 
             $table->string('name');
+            $table->string('slug');
             $table->string('email');
             $table->string('salary');
             $table->string('apply_link');

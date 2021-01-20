@@ -8,7 +8,7 @@
     ],
     "license": "MIT",
     "require": {
-        "php": "^7.3|^8.0",
+        "php": "^7.4",
         "backpack/crud": "4.1.*",
         "fideloper/proxy": "^4.4",
         "fruitcake/laravel-cors": "^2.0",
@@ -18,6 +18,7 @@
         "laravel/framework": "^8.12",
         "laravel/tinker": "^2.5",
         "livewire/livewire": "^2.3",
+        "spatie/laravel-sluggable": "^2.6",
         "lightit/laravel-google-jobs": "dev-master"
     },
     "require-dev": {

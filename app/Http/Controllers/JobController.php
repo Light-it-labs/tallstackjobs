@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 use App\Http\Requests\StoreJobRequest;
 use App\Models\Hashtag;
 use App\Models\Job;
@@ -16,9 +17,7 @@ class JobController extends Controller
         ]);
     }
 
-    public function show($id) {
-
-        $job = Job::find($id);
+    public function show(Job $job) {
 
         $job_metadata = [
             "datePosted" => $job->updated_at,
@@ -44,7 +43,6 @@ class JobController extends Controller
     public function store(StoreJobRequest $request) {
         
         $validated = $request->validated();
-        $tags = array_map("intval", explode(",", $request->get('tags')));
         
         $job = Job::create([
             'name' => $validated['name'],
@@ -54,8 +52,13 @@ class JobController extends Controller
             'apply_link' => $validated['apply_link'],
             'email' => $validated['email'],
         ]);
+            
+        if ($request->get('tags')) {
+            $tags = array_map("intval", explode(",", $request->get('tags')));
+            $job->hashtags()->attach($tags);
+        } 
 
-        if(sizeof($tags) > 0) $job->hashtags()->attach($tags);
+        Session::flash('success', 'Your job post was saved succesfully!');
 
         return back();
         
