@@ -43,8 +43,7 @@ class JobController extends Controller
     public function store(StoreJobRequest $request) {
         
         $validated = $request->validated();
-        $tags = array_map("intval", explode(",", $request->get('tags')));
-
+        
         $job = Job::create([
             'name' => $validated['name'],
             'description' => $validated['description'],
@@ -53,8 +52,11 @@ class JobController extends Controller
             'apply_link' => $validated['apply_link'],
             'email' => $validated['email'],
         ]);
-
-        if (sizeof($tags) > 0) $job->hashtags()->attach($tags);
+            
+        if ($request->get('tags')) {
+            $tags = array_map("intval", explode(",", $request->get('tags')));
+            $job->hashtags()->attach($tags);
+        } 
 
         Session::flash('success', 'Your job post was saved succesfully!');
 
