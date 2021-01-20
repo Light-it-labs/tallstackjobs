@@ -1,22 +1,17 @@
 <div x-data="{ current: null, showModal: false }">
     <div class="max-w-screen-sm px-3 mx-auto">
         <input wire:model="search" id="search" name="search" type="text" autocomplete="off"
-        class="block w-full p-3 my-5 placeholder-gray-400 transition duration-150 ease-in-out border border-gray-300 rounded-md appearance-none  focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:leading-5" placeholder="Search open positions..."/>
-<!--         <span class="block rounded-md" wire:click="handleSearch">
-            <button type="submit" class="flex justify-center w-full px-3 py-2 m-5 text-sm font-medium text-white transition duration-150 ease-in-out bg-indigo-600 rounded-md hover:bg-indigo-500 focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo active:bg-indigo-700">
-                Search
-            </button>
-        </span> -->
+        class="block w-full p-3 my-5 placeholder-gray-400 transition duration-150 ease-in-out border border-gray-300 rounded-md appearance-none focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:leading-5" placeholder="Search open positions..."/>
     </div>
     
     <div class="max-w-screen-sm min-w-0 mx-auto mb-5 md:px-3">
         <template x-for="(job, index) in {{ json_encode($jobs->toArray()['data']) }}" :key="index">
             <div class="flex justify-between w-full px-2 py-5 border-b border-gray-200 cursor-pointer last:border-b-0 md:px-0">
-                <a :href="'/jobs/' + job.slug"><img style="margin-top:5px;" class="self-start rounded" x-bind:src="job.company.logo" alt=""></a>
+                <a :href="'/jobs/' + job.slug"><img style="margin-top:5px;" class="self-start w-12 rounded sm:w-auto" x-bind:src="job.company.logo" alt=""></a>
                 <div class="flex-1 pl-3">
                     <a :href="'/jobs/' + job.slug" class="block">
-                        <h2 class="text-xl font-medium" x-text="job.name"></h2>
-                        <p class="text-sm font-light" x-text="job.description"></p>
+                        <h2 class="font-medium sm:text-xl" x-text="job.name"></h2>
+                        <p class="text-sm font-light leading-5" x-text="job.description"></p>
                     </a>
                     <div class="mt-3" x-show="job.hashtags.length > 0">                    
                         <template x-for="(hashtag, index) in job.hashtags">

@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="w-full max-w-screen-sm px-2 mx-auto mb-8">
+<div class="w-full max-w-screen-sm px-3 mx-auto mb-8">
     
     @if (Session::has('success'))
     <div class="px-4 py-2 my-3 text-sm text-center text-white bg-green-500 rounded" x-data="{ show: true }" x-show="show" x-init="setTimeout(() => show = false, 3000)">
@@ -23,7 +23,7 @@
             type="text"
             name="name"
             id="name"
-            class="block w-full p-2 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+            class="block w-full p-2 text-sm border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
             placeholder="Which role does your company need?"
             autocomplete="off"
             value="{{ old('name') }}">
@@ -38,7 +38,7 @@
             name="description"
             rows="5"
             id="description"
-            class="block w-full p-2 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+            class="block w-full p-2 text-sm border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
             placeholder="Description of the role"
             autocomplete="off"
             >{{ old('description') }}</textarea>
@@ -63,7 +63,7 @@
             <template x-for="(tag, index) in ownTags" :key="index">
                 <span @click="removeTag(tag.id, ownTags)" x-text="'x ' + tag.label" class="inline-flex items-center self-center px-3 py-1 my-1 mr-1 text-xs font-medium text-white bg-gray-400 rounded-full cursor-pointer"></span>
             </template>
-            <input x-model="filter" @click="open = true" @input="$event.target.value === '' ? filteredTags = tags : filteredTags = tags.filter((tag) => tag.label.includes($event.target.value))" class="flex-1 ml-1" :class="ownTags.length > 0 ? 'px-2' : ''" type="text" placeholder="+ Add tags" autocomplete="off" />
+            <input x-model="filter" @click="open = true" @input="$event.target.value === '' ? filteredTags = tags : filteredTags = tags.filter((tag) => tag.label.includes($event.target.value))" class="flex-1 ml-1 text-sm" :class="ownTags.length > 0 ? 'px-2' : ''" type="text" placeholder="+ Add tags" autocomplete="off" />
             <input type="hidden" :value="getOwnTagsIds(ownTags)" name="tags" id="tags" />
         </div>
         <ul x-show="open" class="absolute block w-full h-40 mt-1 overflow-y-auto bg-white border-gray-300 rounded-md shadow-sm cursor-pointer focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
@@ -80,7 +80,7 @@
             type="text"
             name="salary"
             id="salary"
-            class="block w-full p-2 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+            class="block w-full p-2 text-sm border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
             autocomplete="off"
             placeholder="How much will you pay?"
             value="{{ old('salary') }}">
@@ -95,7 +95,7 @@
             type="text"
             name="apply_link"
             id="apply_link"
-            class="block w-full p-2 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+            class="block w-full p-2 text-sm border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
             autocomplete="off"
             placeholder="https://"
             value="{{ old('apply_link') }}">
@@ -110,7 +110,7 @@
             type="text"
             name="email"
             id="email"
-            class="block w-full p-2 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+            class="block w-full p-2 text-sm border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
             placeholder="Where do applicants send CVs?"
             autocomplete="off"
             value="{{ old('email') }}">
