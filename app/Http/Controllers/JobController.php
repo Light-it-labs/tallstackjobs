@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 use App\Http\Requests\StoreJobRequest;
 use App\Models\Hashtag;
 use App\Models\Job;
@@ -43,7 +44,7 @@ class JobController extends Controller
         
         $validated = $request->validated();
         $tags = array_map("intval", explode(",", $request->get('tags')));
-        
+
         $job = Job::create([
             'name' => $validated['name'],
             'description' => $validated['description'],
@@ -53,7 +54,9 @@ class JobController extends Controller
             'email' => $validated['email'],
         ]);
 
-        if(sizeof($tags) > 0) $job->hashtags()->attach($tags);
+        if (sizeof($tags) > 0) $job->hashtags()->attach($tags);
+
+        Session::flash('success', 'Your job post was saved succesfully!');
 
         return back();
         
