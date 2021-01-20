@@ -38,7 +38,7 @@ class Register extends Component
         $this->validate([
             'name' => ['required'],
             'company_name' => ['required', 'unique:companies,name'],
-            'company_logo' => ['required', 'image', 'dimensions:width=80,height=80,ratio=0/0'],
+            'company_logo' => ['required', 'image', 'dimensions:ratio=0/0', 'max:1024'],
             'email' => ['required', 'email', 'unique:users'],
             'password' => ['required', 'min:8', 'same:passwordConfirmation'],
         ]);

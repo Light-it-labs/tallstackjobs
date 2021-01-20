@@ -3,7 +3,7 @@
 @section('content')
 <div class="w-full max-w-screen-sm px-2 mx-auto mb-8">
     <div class="flex justify-between w-full px-2 py-5 border-b border-gray-200 cursor-pointer last:border-b-0 md:px-0">
-        <img style="margin-top:5px;" class="self-start rounded" src="{{url('/' . $job->company->logo)}}" alt="">
+        <img style="margin-top:5px;" class="self-start rounded" src="{{ asset('storage/' . $job->company->logo) }}" alt="">
         <div class="flex-1 pl-3">
             <h2 class="text-xl font-medium">{{$job->name}}</h2>
             <p class="text-sm font-light">{{$job->description}}</p>

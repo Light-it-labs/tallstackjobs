@@ -7,7 +7,7 @@
     <div class="max-w-screen-sm min-w-0 mx-auto mb-5 md:px-3">
         <template x-for="(job, index) in {{ json_encode($jobs->toArray()['data']) }}" :key="index">
             <div class="flex justify-between w-full px-2 py-5 border-b border-gray-200 cursor-pointer last:border-b-0 md:px-0">
-                <a :href="'/jobs/' + job.slug"><img style="margin-top:5px;" class="self-start w-12 rounded sm:w-auto" x-bind:src="job.company.logo" alt=""></a>
+                <a :href="'/jobs/' + job.slug"><img style="margin-top:5px;" class="self-start w-12 rounded sm:w-auto" x-bind:src="'storage/' + job.company.logo" alt=""></a>
                 <div class="flex-1 pl-3">
                     <a :href="'/jobs/' + job.slug" class="block">
                         <h2 class="font-medium sm:text-xl" x-text="job.name"></h2>
@@ -15,7 +15,7 @@
                     </a>
                     <div class="mt-3" x-show="job.hashtags.length > 0">                    
                         <template x-for="(hashtag, index) in job.hashtags">
-                            <span x-text="hashtag.label" class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-gray-400 text-white"></span>
+                            <span x-text="hashtag.label" class="inline-flex items-center px-2 py-0 text-xs font-medium text-white bg-gray-400 rounded-full"></span>
                         </template>
                     </div>
                     <a :href="job.apply_link"

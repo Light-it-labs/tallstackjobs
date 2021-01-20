@@ -20,9 +20,9 @@ class Company extends Model
     {
         $attribute_name = "logo";
         // or use your own disk, defined in config/filesystems.php
-        $disk = config('backpack.base.root_disk_name'); 
+        $disk = "public"; 
         // destination path relative to the disk above
-        $destination_path = "public/images/company/logos"; 
+        $destination_path = "images/company/logos"; 
 
         // if the image was erased
         if ($value==null) {
