@@ -51,7 +51,7 @@
                     <div class="relative flex items-center justify-between h-24">
                         <div class="flex items-center md:px-3">
                             <div class="flex-shrink-0">
-                                <a href="{{ url('/') }}"><img class="w-auto h-8 mr-6" src="{{ asset('storage/images/tallstack-logo.svg') }}" alt="Home"></a>
+                                <a href="{{ url('/') }}"><img class="w-auto h-8 mr-6" src="{{ asset('images/tallstack-logo.svg') }}" alt="Home"></a>
                             </div>
                             <h1 class="flex-1 hidden mt-1 text-lg font-extrabold sm:block"><a href="{{ url('/') }}">TALL Stack Job Board</a></h1>
                         </div>
