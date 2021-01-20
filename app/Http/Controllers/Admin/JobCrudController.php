@@ -42,7 +42,6 @@ class JobCrudController extends CrudController
         CRUD::column('name');
         CRUD::column('email');
         CRUD::column('salary');
-        CRUD::column('currency');
         CRUD::column('apply_link');
         CRUD::column('company_id');
         CRUD::column('description');
@@ -69,7 +68,6 @@ class JobCrudController extends CrudController
         CRUD::field('name');
         CRUD::field('email');
         CRUD::field('salary');
-        CRUD::field('currency');
         CRUD::field('apply_link');
         CRUD::field('company_id');
         CRUD::field('description');
