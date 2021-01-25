@@ -16,21 +16,23 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        $company = Company::create([
+        $company = new Company();
+        $company->setRawAttributes([
             'name' => 'Test Company',
-            'logo' => 'http://placehold.it/80x80.jpg',
+            'logo' => public_path('images/company_logo_placeholder.jpg'),
         ]);
+
+        Job::factory(10)
+        ->hasHashtags(random_int(1,6))
+        ->forCompany($company->toArray())
+        ->create();
 
         User::create([
             'name' => 'User',
-            'company_id' => $company->id,
+            'company_id' => 1,
             'email' => 'user@user.com',
             'password' => bcrypt('password'),
         ]);
         
-        Job::factory(10)
-        ->hasHashtags(random_int(1,6))
-        ->forCompany()
-        ->create();
     }
 }
