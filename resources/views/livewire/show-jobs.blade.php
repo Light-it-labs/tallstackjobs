@@ -18,7 +18,7 @@
                             <span x-text="hashtag.label" class="inline-flex items-center px-2 py-0 text-xs font-medium text-white bg-gray-400 rounded-full"></span>
                         </template>
                     </div>
-                    <a :href="job.apply_link"
+                    <a :href="job.apply_link" target="_blank"
                     class="inline-flex items-center px-2 py-1 mt-6 text-xs font-medium text-white bg-indigo-600 border border-transparent rounded shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                     Apply
                     </a>
